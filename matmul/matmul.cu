@@ -5,8 +5,8 @@ __global__ void sgemm_naive(int M, int N, int K, float alpha,
     float beta, float *C
     )
 {
-  const uint x = blockDim.x * blockDim.x + threadIdx.x;
-  const uint y = blockDim.y * blockDim.y + threadIdx.y;
+  const uint x = blockDim.x * blockIdx.x + threadIdx.x;
+  const uint y = blockDim.y * blockIdx.y + threadIdx.y;
 
   if(x < M && y < N)
   {
