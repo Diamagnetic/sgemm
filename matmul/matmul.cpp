@@ -1,3 +1,9 @@
+/*
+ * Author: Chirag Dhamange
+ * File Name: matmul.cpp
+ * Purpose: Host code for SGEMM. Prints time taken
+*/
+
 #include <cuda_runtime.h>
 #include "matmul.cuh"
 
@@ -12,6 +18,7 @@ constexpr int COLS_B = 1024;
 
 int main()
 {
+  // dimensions of A = (M, K), B = (K, N)
   int M = ROWS_A, N = COLS_B, K = COLS_A;
   float *A, *B, *C, alpha = 1, beta = 0;
 
@@ -36,8 +43,9 @@ void run_mat_mul_wrapper(const int &M, const int &N, const int &K,
   run_mat_mul(M, N, K, alpha, A, B, beta, C);
   t_end = std::chrono::high_resolution_clock::now();
 
-  double time_taken = (std::chrono::duration_cast<std::chrono::nanoseconds>
-    (t_end - t_start)).count() / (double) 1000000000;
+  double time_taken = 
+    (std::chrono::duration_cast<std::chrono::nanoseconds>
+      (t_end - t_start)).count() / (double) 1000000000;
 
   print_time_taken(time_taken);
 }
@@ -46,5 +54,6 @@ void print_time_taken(const double &time_taken)
 {
   std::cout.precision(14);
 
-  std::cout << std::fixed << "Time taken = " << time_taken << "seconds\n";
+  std::cout << std::fixed << "Time taken = " << time_taken
+    << "seconds\n";
 }
