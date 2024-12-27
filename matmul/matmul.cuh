@@ -1,3 +1,13 @@
+/*
+ * Author: Chirag Dhamange
+ * File Name: matmul.cuh
+ * Purpose: Function definitions for CUDA code. Includes host functions.
+ *          Includes CUDA kernel definitions for Standard GEneral Matrix
+ *          Multiplication (SGEMM). The following techniques were used
+ *          and performance was measured:
+ *          1. Naive
+*/
+
 #ifndef MATMUL_CUDA_H
 #define MATMUL_CUDA_H
 __global__ void sgemm_naive(int M, int N, int K, float alpha,
