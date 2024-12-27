@@ -27,4 +27,5 @@ matmul: matmul.o matmul_cu.o
 	$(GXX) $^ -o $@ $(LDFLAGS)
 
 clean:
-	rm *.o $(PRODUCT)
+	rm -v *.o
+	rm -vf $(PRODUCT)
